@@ -16,20 +16,24 @@
 package org.redisson.api;
 
 /**
- * 
- * @author Nikita Koksharov
+ * 限流类型
  *
+ * @author Nikita Koksharov
  */
 public enum RateType {
 
     /**
      * Total rate for all RateLimiter instances
+     *
+     * 相同名字的所有 RateLimiter 实例
      */
     OVERALL,
-    
+
     /**
      * Total rate for all RateLimiter instances working with the same Redisson instance
+     *
+     * 相同 JVM 进程的所有相同名字的所有 RateLimiter 实例
      */
     PER_CLIENT
-    
+
 }

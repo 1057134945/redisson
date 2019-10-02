@@ -16,14 +16,23 @@
 package org.redisson.api;
 
 /**
- * 
- * @author Nikita Koksharov
+ * 限流配置
  *
+ * @author Nikita Koksharov
  */
 public class RateLimiterConfig {
 
+    /**
+     * 限流类型
+     */
     private RateType rateType;
+    /**
+     * 限流周期
+     */
     private Long rateInterval;
+    /**
+     * 限流速度
+     */
     private Long rate;
 
     public RateLimiterConfig(RateType rateType, Long rateInterval, Long rate) {
@@ -34,19 +43,19 @@ public class RateLimiterConfig {
     }
 
     /**
-     * Returns current rate type set through {@link RRateLimiter#trySetRate(RateType, long, long, RateIntervalUnit)} 
+     * Returns current rate type set through {@link RRateLimiter#trySetRate(RateType, long, long, RateIntervalUnit)}
      * or {@link RRateLimiter#trySetRateAsync(RateType, long, long, RateIntervalUnit)} method.
-     * 
+     *
      * @return rate type
      */
     public RateType getRateType() {
         return rateType;
     }
-    
+
     /**
-     * Returns current rate time interval value set through {@link RRateLimiter#trySetRate(RateType, long, long, RateIntervalUnit)} 
+     * Returns current rate time interval value set through {@link RRateLimiter#trySetRate(RateType, long, long, RateIntervalUnit)}
      * or {@link RRateLimiter#trySetRateAsync(RateType, long, long, RateIntervalUnit)} method.
-     * 
+     *
      * @return rate time interval in milliseconds
      */
     public Long getRateInterval() {
@@ -54,14 +63,14 @@ public class RateLimiterConfig {
     }
 
     /**
-     * Returns current rate value set through {@link RRateLimiter#trySetRate(RateType, long, long, RateIntervalUnit)} 
+     * Returns current rate value set through {@link RRateLimiter#trySetRate(RateType, long, long, RateIntervalUnit)}
      * or {@link RRateLimiter#trySetRateAsync(RateType, long, long, RateIntervalUnit)} method.
-     * 
+     *
      * @return rate
      */
     public Long getRate() {
         return rate;
     }
 
-    
+
 }

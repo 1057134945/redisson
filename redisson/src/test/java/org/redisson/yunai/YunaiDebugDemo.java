@@ -17,8 +17,9 @@ public class YunaiDebugDemo {
 
         // 创建 RRateLimiter 对象
         RRateLimiter rateLimiter = client.getRateLimiter("myRateLimiter");
-        // 初始化：最大流速 = 每 1 分钟产生 2 个令牌
-        rateLimiter.trySetRate(RateType.OVERALL, 2, 1, RateIntervalUnit.SECONDS);
+        // 初始化：最大流速 = 每 1 秒钟产生 2 个令牌
+        rateLimiter.trySetRate(RateType.OVERALL, 2, 1, RateIntervalUnit.MINUTES);
+//        rateLimiter.trySetRate(RateType.PER_CLIENT, 50, 1, RateIntervalUnit.MINUTES);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (int i = 0; i < 5; i++) {
