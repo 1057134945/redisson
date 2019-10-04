@@ -31,10 +31,12 @@ public class RedissonCountDownLatchEntry implements PubSubEntry<RedissonCountDow
         this.promise = promise;
     }
 
+    @Override
     public void aquire() {
         counter++;
     }
 
+    @Override
     public int release() {
         return --counter;
     }

@@ -35,7 +35,7 @@ public interface RLock extends Lock, RLockAsync {
      * @return name - name of object
      */
     String getName();
-    
+
     /**
      * Acquires the lock.
      *
@@ -130,12 +130,12 @@ public interface RLock extends Lock, RLockAsync {
     int getHoldCount();
 
     /**
-     * Remaining time to live of this lock 
+     * Remaining time to live of this lock
      *
      * @return time in milliseconds
      *          -2 if the lock does not exist.
      *          -1 if the lock exists but has no associated expire.
      */
     long remainTimeToLive();
-    
+
 }

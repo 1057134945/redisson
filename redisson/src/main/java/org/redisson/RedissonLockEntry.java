@@ -15,17 +15,29 @@
  */
 package org.redisson;
 
+import org.redisson.misc.RPromise;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 
-import org.redisson.misc.RPromise;
-
 public class RedissonLockEntry implements PubSubEntry<RedissonLockEntry> {
 
+    /**
+     * 计数器
+     *
+     * 每次发起订阅，则计数器 + 1
+     * 每次取消订阅，则计数器 - 1 。当减少到 0 时，才正常取消订阅。
+     */
     private int counter;
 
+    /**
+     * 信号量，用于实现 RedissonLock 阻塞等待的通知
+     */
     private final Semaphore latch;
     private final RPromise<RedissonLockEntry> promise;
+    /**
+     * 监听器们
+     */
     private final ConcurrentLinkedQueue<Runnable> listeners = new ConcurrentLinkedQueue<Runnable>();
 
     public RedissonLockEntry(RPromise<RedissonLockEntry> promise) {
@@ -34,14 +46,17 @@ public class RedissonLockEntry implements PubSubEntry<RedissonLockEntry> {
         this.promise = promise;
     }
 
+    @Override
     public void aquire() {
         counter++;
     }
 
+    @Override
     public int release() {
         return --counter;
     }
 
+    @Override
     public RPromise<RedissonLockEntry> getPromise() {
         return promise;
     }
