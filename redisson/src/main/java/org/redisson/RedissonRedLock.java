@@ -15,14 +15,14 @@
  */
 package org.redisson;
 
-import java.util.List;
-
 import org.redisson.api.RLock;
 
+import java.util.List;
+
 /**
- * RedLock locking algorithm implementation for multiple locks. 
+ * RedLock locking algorithm implementation for multiple locks.
  * It manages all locks as one.
- * 
+ *
  * @see <a href="http://redis.io/topics/distlock">http://redis.io/topics/distlock</a>
  *
  * @author Nikita Koksharov
@@ -44,7 +44,7 @@ public class RedissonRedLock extends RedissonMultiLock {
     protected int failedLocksLimit() {
         return locks.size() - minLocksAmount(locks);
     }
-    
+
     protected int minLocksAmount(final List<RLock> locks) {
         return locks.size()/2 + 1;
     }
@@ -53,7 +53,7 @@ public class RedissonRedLock extends RedissonMultiLock {
     protected long calcLockWaitTime(long remainTime) {
         return Math.max(remainTime / locks.size(), 1);
     }
-    
+
     @Override
     public void unlock() {
         unlockInner(locks);
